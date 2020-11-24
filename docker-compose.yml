@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  broker:
+    image: eclipse-mosquitto
+    ports:
+    - "1883:1883"
+    - "9001:9001"
+
+  producer:
+    build: ./producer
+    depends_on:
+      - broker
+    tty: true
+    stdin_open: true
+    environment:
+      BROKER_HOST: "broker"
+      BROKER_PORT: "1883"
+      TOPIC: "hello"
+
+  consumer:
+    build: ./consumer
+    depends_on:
+      - broker
+    tty: true
+    stdin_open: true
+    environment:
+      BROKER_HOST: "broker"
+      BROKER_PORT: "1883"
+      TOPIC: "hello"
