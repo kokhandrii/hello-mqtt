@@ -1,6 +1,6 @@
  
  ## Tl;dr
- docker-compose up --buld
+ docker-compose up --build
  
  ## manually the hard way
  docker network create test
